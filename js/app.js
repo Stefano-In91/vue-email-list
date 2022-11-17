@@ -4,6 +4,7 @@ createApp({
   data() {
     return {
       mailList: [],
+      error: false,
     };
   },
   created() {
@@ -12,6 +13,9 @@ createApp({
         .get(`https://flynn.boolean.careers/exercises/api/random/mail`)
         .then((response) => {
           this.mailList.push(response.data.response);
+        })
+        .catch((err) => {
+          this.error = true;
         });
     }
   },
